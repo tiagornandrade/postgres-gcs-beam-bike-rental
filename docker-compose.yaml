@@ -13,24 +13,8 @@ services:
     networks:
       - project_network
 
-  minio:
-      hostname: minio_lake
-      image: 'minio/minio:latest'
-      container_name: minio_lake
-      ports:
-          - '9000:9000'
-          - '9001:9001'
-      volumes:
-        - ./minio_lake-data:/data
-      environment:
-        MINIO_ROOT_USER: minio_access_key
-        MINIO_ROOT_PASSWORD: minio_secret_key
-      command: server /data --console-address ":9001"
-
 networks:
   project_network:
-    driver: bridge
-  minionetwork:
     driver: bridge
 
 volumes:
