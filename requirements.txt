@@ -5,6 +5,6 @@ psycopg2-binary
 boto3
 pandas
 pyarrow
-minio
+google-cloud-storage
 apache-beam
 python-dotenv

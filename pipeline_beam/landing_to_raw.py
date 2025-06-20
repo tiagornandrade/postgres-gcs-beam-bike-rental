@@ -1,7 +1,11 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import argparse
 import apache_beam as beam
 from utils.postgres.generate import FakerEvents
-from utils.minio.landing_to_raw import process_etl
+from utils.gcs.landing_to_raw import process_etl
 from apache_beam.options.pipeline_options import PipelineOptions
 
 
@@ -18,7 +22,7 @@ class GenerateData(beam.DoFn):
 class ProcessRaw(beam.DoFn):
     def process(self, element: str):
         process_etl()
-        yield f"Data loaded into MinIO for {element} records"
+        yield f"Data loaded into GCS for {element} records"
 
 
 def run(sample_size):
